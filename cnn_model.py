@@ -23,7 +23,7 @@ class mask_net(nn.Module):
         self.conv3 = nn.Sequential(nn.Conv2d(128, 256, kernel_size=3, padding=1),
                                   nn.BatchNorm2d(256),
                                   nn.ReLU(inplace=True),
-                                  nn.MaxPool2d(8)) # out: 256 x 1 x 
+                                  nn.MaxPool2d(8)) # out: 256 x 1 x 1
 
         self.classifier = nn.Sequential(nn.Flatten(),  # out: 256
                                         nn.Linear(256, 512),
