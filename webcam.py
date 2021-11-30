@@ -7,7 +7,7 @@ def satisfy_reqs():
 
 
 if __name__ == "__main__":
-    # satisfy_reqs()
+    satisfy_reqs()
 
     model = model_load()
 
