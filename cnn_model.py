@@ -25,6 +25,10 @@ class mask_net(nn.Module):
                                   nn.ReLU(inplace=True),
                                   nn.MaxPool2d(4)) # out: 256 x 4 x 4
         
+        self.res2 = nn.Sequential(nn.Conv2d(256, 256, kernel_size=3, padding=1),
+                                  nn.BatchNorm2d(256),
+                                  nn.ReLU(inplace=True)) # out: 256 x 4 x 4
+        
         self.conv4 = nn.Sequential(nn.Conv2d(256, 512, kernel_size=3, padding=1),
                                   nn.BatchNorm2d(512),
                                   nn.ReLU(inplace=True),
@@ -39,6 +43,7 @@ class mask_net(nn.Module):
         out = self.conv2(out)
         out = self.res1(out)
         out = self.conv3(out)
+        out = self.res2(out)
         out = self.conv4(out)
         out = self.classifier(out)
         return out
