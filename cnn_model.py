@@ -16,11 +16,11 @@ class mask_net(nn.Module):
                                   nn.ReLU(inplace=True),
                                   nn.MaxPool2d(8)) # out: 64 x 8 x 8
         
-        self.res1 = nn.Sequential(nn.Conv2d(64, 64, kernel_size=3, padding=1),
-                                  nn.BatchNorm2d(64),
+        self.res1 = nn.Sequential(nn.Conv2d(64, 128, kernel_size=3, padding=1),
+                                  nn.BatchNorm2d(128),
                                   nn.ReLU(inplace=True)) # out: 64 x 16 x 16
 
-        self.conv3 = nn.Sequential(nn.Conv2d(64, 128, kernel_size=3, padding=1),
+        self.conv3 = nn.Sequential(nn.Conv2d(128, 128, kernel_size=3, padding=1),
                                   nn.BatchNorm2d(128),
                                   nn.ReLU(inplace=True),
                                   nn.MaxPool2d(8)) # out: 128 x 1 x 1
