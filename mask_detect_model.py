@@ -5,8 +5,7 @@ import torchvision.transforms as tt
 from cnn_model import mask_net
 
 transforms = tt.Compose([tt.Resize((256, 256)),
-                        tt.ToTensor(),
-                        tt.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+                        tt.ToTensor()])
 
 
 def predict(tensor, model):
