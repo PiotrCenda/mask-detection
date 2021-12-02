@@ -5,7 +5,8 @@ import torchvision.transforms as tt
 from cnn_model import mask_net
 
 transforms = tt.Compose([tt.Resize((256, 256)),
-                        tt.ToTensor()])
+                         tt.ToTensor(),
+                         tt.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 
 def predict(tensor, model):
@@ -23,6 +24,8 @@ def frame_classification(frame_tensor, model):
         pred = predict(frame_tensor, model)
         predicted = classes[pred[0].argmax(0)]
         print(f"Predicted: \"{predicted}\"")
+    
+    return pred[0].argmax(0)
 
 
 def frame_to_tensor(frame):
