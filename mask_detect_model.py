@@ -35,7 +35,7 @@ def frame_to_tensor(frame):
 
 
 def model_load():
-    model = torchvision.models.resnet50()
+    model = torchvision.models.resnet18()
     num_outs = model.fc.in_features
     model.fc = torch.nn.Linear(num_outs, 2)
 
