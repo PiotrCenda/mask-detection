@@ -1,8 +1,8 @@
 from PIL import Image
 import torch
+import torchvision
 import torchvision.transforms as tt
 
-from cnn_model import mask_net
 
 transforms = tt.Compose([tt.Resize((256, 256)),
                          tt.ToTensor(),
@@ -35,7 +35,10 @@ def frame_to_tensor(frame):
 
 
 def model_load():
-    model = mask_net(in_channels=3, num_classes=2)
+    model = torchvision.models.resnet50()
+    num_outs = model.fc.in_features
+    model.fc = torch.nn.Linear(num_outs, 2)
+
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     model.load_state_dict(torch.load("model.pth", map_location=device))
