@@ -24,7 +24,7 @@ if __name__ == "__main__":
             print("Error: Failed to grab frame.")
             break
 
-        result = frame_classification(frame_to_tensor(frame), model)
+        result = frame_classification(frame_to_tensor(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)), model)
         
         color = ((0, 0, 255) if result else (0, 255, 0))
         top, bottom, left, right = [5]*4

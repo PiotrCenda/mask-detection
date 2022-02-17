@@ -5,8 +5,8 @@ import torchvision.transforms as tt
 
 
 transforms = tt.Compose([tt.Resize((256, 256)),
-                         tt.ToTensor(),
-                         tt.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+                         tt.Grayscale(num_output_channels=3),
+                         tt.ToTensor()])
 
 
 def predict(tensor, model):
@@ -41,6 +41,6 @@ def model_load():
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-    model.load_state_dict(torch.load("model.pth", map_location=device))
+    model.load_state_dict(torch.load("new_model.pth", map_location=device))
     model.to(device) 
     return model
